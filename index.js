@@ -10,7 +10,14 @@ const io = require('socket.io')(server);
 io.on('connection',function(socket)
 {
     console.log(socket.id);
-});0
+    socket.join('all');
+    socket.emit('update',{msg:'hello'});
+    socket.on('move',function(raw)
+    {
+        console.log(raw);
+        io.sockets.in('all').emit('update',{msg:'hello'});
+    });
+});
 
 
 //sets up view engine
