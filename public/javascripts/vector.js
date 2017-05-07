@@ -46,15 +46,22 @@ class Vector
     }
     setRotation(angel)
     {
-        if(this.lastCalAngel)
+        if(this.lastCalMag)
         {
-            
+            this.x = this.lastCalMag*Math.cos(angel);
+            this.y = this.lastCalMag*Math.sin(angel);
         }
         else
         {
-            this.calRotation();
-            this.setRotation(angle);
+            this.getMag();
+            this.setRotation(angel);
         }
     }
 
 }
+Vector.fromAngMag = function(mag,ang)
+{
+    let x = mag*Math.cos(ang);
+    let y = mag*Math.sin(ang);
+    return new Vector(x,y);
+};
