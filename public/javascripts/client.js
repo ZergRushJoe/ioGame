@@ -13,12 +13,15 @@ const app = new PIXI.Application();
 document.body.appendChild(app.view);
 app.stop();
 
+let player;
+
 PIXI.loader.add("mainTank","images/tank.png")
     .load(function()
     {
         let baseTexture = PIXI.loader.resources["mainTank"].texture.baseTexture;
         console.log(baseTexture);
         let textures = [];
+
         for(let i = 0; i < 4;i++)
         {
             for(let j = 0; j < 4; j++)
@@ -26,16 +29,23 @@ PIXI.loader.add("mainTank","images/tank.png")
                 textures.push(new PIXI.Texture(baseTexture,new PIXI.Rectangle((j*64),(i*64),64,64)));
             }
         }
-        let tank = new PIXI.extras.AnimatedSprite(textures.slice(0,4));
+        Player.textures = {};
+        Player.textures["move"] = textures.slice(0,4);
+        Player.textures["left"] = textures.slice(4,8);
+        Player.textures["right"] = textures.slice(8,12);
+        Player.textures["fire"] = textures.slice(12,16);
+        // let keys = Object.keys(Player.textures);
+        // for(let i= 0 ;i < keys.length;i++)
+        // {
+        //     Player.textures[keys[i]].hasLoaded = true;
+        // }
+        player = new Player(true,app,100,100);
 
-        tank.gotoAndPlay(0);
-        tank.animationSpeed = .4;
-        app.stage.addChild(tank);
-        console.log("here");
-        app.ticker.add(function()
+        app.ticker.add(function(e)
         {
-           tank.animationSpeed -= .001;
+           player.update();
         });
+
         app.start();
     });
 

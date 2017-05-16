@@ -1,6 +1,7 @@
 /**
  * Created by joe12 on 5/2/2017.
  */
+console.log("here");
 class Vector
 {
     constructor(x,y)
@@ -21,8 +22,8 @@ class Vector
     }
     add(vector)
     {
-        this.x += vector.x;
-        this.y += vector.y;
+        this.x = this.x + vector.x;
+        this.y = this.y + vector.y;
     }
     sub(vector)
     {
