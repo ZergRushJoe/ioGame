@@ -37,11 +37,11 @@ class Player
         if(movement[0])
         {
             console.log(this.acc);
-            this.acc.add(Vector.fromAngMag(.3,this.ang-Math.PI/2));
+            this.acc.add(Vector.fromAngMag(.6,this.ang-Math.PI/2));
         }
         if(movement[1])
         {
-            this.acc.add(Vector.fromAngMag(-.3,this.ang-Math.PI/2));
+            this.acc.add(Vector.fromAngMag(-.6,this.ang-Math.PI/2));
         }
         this.acc.add(new Vector(-this.vel.x*.9,-this.vel.y*.9));
 
@@ -57,11 +57,11 @@ class Player
 
         if(movement[2])
         {
-            this.angAcc -= Math.PI/256;
+            this.angAcc -= Math.PI/128;
         }
         if(movement[3])
         {
-            this.angAcc += Math.PI/256;
+            this.angAcc += Math.PI/128;
         }
         this.angAcc += this.angVel*-.9;
         this.angVel += this.angAcc;
