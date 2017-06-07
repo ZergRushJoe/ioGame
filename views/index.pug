@@ -3,7 +3,20 @@
 html
     head
         title io
-    body
+        style.
+            body
+            {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            canvas
+            {
+                width:100%;
+                heihgt:100%;
+            }
+
+body
         script.
             var ip = "!{serverIP}";
         script(src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.js")
